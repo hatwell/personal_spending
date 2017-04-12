@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.3.4'
+ruby '2.4.0'
 gem 'rspec'
 gem 'pry'
+gem 'pry-byebug'
 gem 'sinatra'
 gem 'pg'
