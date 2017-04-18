@@ -16,6 +16,7 @@ CREATE TABLE transactions(
   id SERIAL8 PRIMARY KEY,
   transaction_date DATE,
   item_name VARCHAR(255),
+  cost FLOAT,s
   retailer_id INT2 REFERENCES retailers(id) ON DELETE CASCADE,
   tag_id INT2 REFERENCES tags(id) ON DELETE CASCADE
 );

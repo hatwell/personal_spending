@@ -1,23 +1,24 @@
 require_relative('../db/sql_runner')
 
 class Transaction
-  attr_reader :id, :item_name, :retailer_id, :tag_id
+  attr_reader :id, :item_name, :retailer_id, :tag_id, :cost
 
   def initialize(params)
     @item_name = params['item_name']
     @tag_id = params['tag_id'].to_i
     @retailer_id = params['retailer_id'].to_i
+    @cost = params['cost'].to_i
     @id = params['id'].to_i
   end
 
   def save()
-    sql = "INSERT INTO transactions(item_name, tag_id, retailer_id) VALUES ('#{@item_name}', #{@tag_id}, #{@retailer_id}) RETURNING * "
+    sql = "INSERT INTO transactions(item_name, tag_id, retailer_id, cost) VALUES ('#{@item_name}', #{@tag_id}, #{@retailer_id}, #{@cost}) RETURNING * "
     result = SqlRunner.run(sql)
     @id = result.first['id'].to_i
   end
 
   def update()
-    sql = "UPDATE transactions SET (item_name, tag_id, retailer_id) = ('#{@item_name}', #{@tag_id}, #{@retailer_id})"
+    sql = "UPDATE transactions SET (item_name, tag_id, retailer_id, cost) = ('#{@item_name}', #{@tag_id}, #{@retailer_id}, #{@cost})"
     SqlRunner.run(sql)
   end
 
