@@ -5,6 +5,7 @@ class Transaction
 
   def initialize(params)
     @item_name = params['item_name']
+    @transaction_date = params['transaction_date']
     @tag_id = params['tag_id'].to_i
     @retailer_id = params['retailer_id'].to_i
     @cost = params['cost'].to_i
@@ -12,13 +13,13 @@ class Transaction
   end
 
   def save()
-    sql = "INSERT INTO transactions(item_name, tag_id, retailer_id, cost) VALUES ('#{@item_name}', #{@tag_id}, #{@retailer_id}, #{@cost}) RETURNING * "
+    sql = "INSERT INTO transactions(item_name, transaction_date, tag_id, retailer_id, cost) VALUES ('#{@item_name}', '#{@transaction_date}', #{@tag_id}, #{@retailer_id}, #{@cost}) RETURNING * "
     result = SqlRunner.run(sql)
     @id = result.first['id'].to_i
   end
 
   def update()
-    sql = "UPDATE transactions SET (item_name, tag_id, retailer_id, cost) = ('#{@item_name}', #{@tag_id}, #{@retailer_id}, #{@cost})"
+    sql = "UPDATE transactions SET (item_name, transaction_date, tag_id, retailer_id, cost) = ('#{@item_name}', '#{@transaction_date}', #{@tag_id}, #{@retailer_id}, #{@cost})"
     SqlRunner.run(sql)
   end
 

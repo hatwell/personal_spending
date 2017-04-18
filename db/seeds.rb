@@ -27,7 +27,7 @@ end
 Transaction.delete_all()
 transaction1 = Transaction.new({
   'item_name' => 'weekly shop',
-  'transaction_date' => 04/04/2017,
+  'transaction_date' => '04/04/2017',
   'retailer_id' => Retailer.all[3].id,
   'tag_id' => Tag.all[0].id,
   'cost' => 5.00
